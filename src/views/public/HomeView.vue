@@ -1,54 +1,97 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { articles } from '@/data/mock'
-import { ArrowRight, Timer, View } from '@element-plus/icons-vue'
+import { Search, Timer, View, Calendar, CollectionTag } from '@element-plus/icons-vue'
 
+const keyword = ref('')
 const activeCategory = ref('全部')
-const categories = ['全部', '前端开发', '产品思考', '性能优化', '开发日志']
-const visibleArticles = computed(() => activeCategory.value === '全部' ? articles : articles.filter(a => a.category === activeCategory.value))
+const categories = ['全部', 'AI 实战', '实验记录', '年度总结']
+
+const visibleArticles = computed(() => articles.filter((article) => {
+  const categoryMatch = activeCategory.value === '全部' || article.category === activeCategory.value
+  const keywordMatch = !keyword.value || `${article.title}${article.summary}${article.tags.join('')}`.toLowerCase().includes(keyword.value.toLowerCase())
+  return categoryMatch && keywordMatch
+}))
 </script>
 
 <template>
-  <div>
-    <section class="hero-section">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow"><i></i>持续写作第 186 天</span>
-          <h1>记录问题，<br><em>也记录答案。</em></h1>
-          <p>这里分享前端开发、产品设计与独立创作。希望每一篇文章，都能帮你把一个问题看得更清楚。</p>
-          <div class="hero-actions">
-            <RouterLink to="/archive" class="primary-button">浏览全部文章 <ArrowRight /></RouterLink>
-            <RouterLink to="/about" class="text-link">认识作者</RouterLink>
+  <div class="home-feed container">
+    <header class="feed-header">
+      <div>
+        <h1>最近文章</h1>
+        <p>记录技术实践、实验过程和阶段性思考。</p>
+      </div>
+      <el-input v-model="keyword" :prefix-icon="Search" placeholder="搜索文章" clearable />
+    </header>
+
+    <div class="category-tabs compact-tabs" role="tablist" aria-label="文章分类">
+      <el-button
+        v-for="category in categories"
+        :key="category"
+        :type="activeCategory === category ? 'primary' : 'default'"
+        round
+        @click="activeCategory = category"
+      >
+        {{ category }}
+      </el-button>
+    </div>
+
+    <div class="feed-layout">
+      <main class="post-feed">
+        <RouterLink
+          v-for="article in visibleArticles"
+          :key="article.id"
+          :to="`/article/${article.slug}`"
+          class="feed-post"
+        >
+          <div class="feed-post-copy">
+            <div class="feed-post-meta">
+              <el-tag size="small" effect="plain">{{ article.category }}</el-tag>
+              <span><Calendar />{{ article.date }}</span>
+            </div>
+            <h2>{{ article.title }}</h2>
+            <p>{{ article.summary }}</p>
+            <div class="feed-post-bottom">
+              <div class="tag-row">
+                <span v-for="tag in article.tags" :key="tag"># {{ tag }}</span>
+              </div>
+              <div class="article-meta">
+                <span><Timer />{{ article.readTime }}</span>
+                <span><View />{{ article.views }}</span>
+              </div>
+            </div>
           </div>
-          <div class="hero-stats"><span><strong>42</strong>篇文章</span><span><strong>18.6k</strong>次阅读</span><span><strong>24</strong>个标签</span></div>
+          <img v-if="article.cover" :src="article.cover" :alt="`${article.title}配图`" loading="lazy" />
+          <div v-else class="text-cover"><span>{{ article.date.slice(0, 4) }}</span><strong>年度记录</strong></div>
+        </RouterLink>
+
+        <el-empty v-if="!visibleArticles.length" description="没有找到相关文章" />
+
+        <div class="feed-more">
+          <RouterLink to="/archive"><el-button size="large">查看全部历史文章</el-button></RouterLink>
         </div>
-        <RouterLink :to="`/article/${articles[0].slug}`" class="featured-card">
-          <div class="feature-visual"><span>EDITOR'S PICK</span><div class="visual-lines"><i></i><i></i><i></i><i></i></div><b>01</b></div>
-          <div class="feature-body">
-            <span class="category-label">{{ articles[0].category }}</span>
-            <h2>{{ articles[0].title }}</h2>
-            <p>{{ articles[0].summary }}</p>
-            <div class="article-meta"><span>{{ articles[0].date }}</span><span><Timer />{{ articles[0].readTime }}</span></div>
-          </div>
-        </RouterLink>
-      </div>
-    </section>
+      </main>
 
-    <section class="article-section container">
-      <div class="section-heading"><div><span class="section-kicker">LATEST NOTES</span><h2>最近更新</h2></div><RouterLink to="/archive">查看归档 <ArrowRight /></RouterLink></div>
-      <div class="category-tabs">
-        <button v-for="category in categories" :key="category" :class="{ active: activeCategory === category }" @click="activeCategory = category">{{ category }}</button>
-      </div>
-      <div class="article-grid">
-        <RouterLink v-for="article in visibleArticles.slice(1)" :key="article.id" :to="`/article/${article.slug}`" class="article-card">
-          <div class="card-visual" :class="article.tone"><span>{{ String(article.id).padStart(2, '0') }}</span><i></i></div>
-          <div class="card-content"><span class="category-label">{{ article.category }}</span><h3>{{ article.title }}</h3><p>{{ article.summary }}</p><div class="article-meta"><span>{{ article.date }}</span><span><Timer />{{ article.readTime }}</span><span><View />{{ article.views }}</span></div></div>
-        </RouterLink>
-      </div>
-    </section>
+      <aside class="home-sidebar">
+        <el-card shadow="never" class="profile-card">
+          <div class="profile-line"><span class="about-avatar small">刘</span><div><strong>Liu Yang</strong><p>记录学习、实验与生活</p></div></div>
+          <p class="profile-note">这个博客保留真实的项目过程和阶段性总结，内容来自原服务器博客样例。</p>
+          <RouterLink to="/about"><el-button text type="primary">关于作者</el-button></RouterLink>
+        </el-card>
 
-    <section class="newsletter-section">
-      <div class="container newsletter-inner"><div><span class="section-kicker">KEEP IN TOUCH</span><h2>不错过下一篇好文章</h2><p>每月一封邮件，只分享新文章和近期思考。</p></div><div class="subscribe"><el-input placeholder="你的邮箱地址" size="large" /><el-button type="primary" size="large">订阅更新</el-button></div></div>
-    </section>
+        <el-card shadow="never" class="side-card">
+          <template #header><div class="side-card-title"><CollectionTag />文章分类</div></template>
+          <button v-for="category in categories.slice(1)" :key="category" @click="activeCategory = category">
+            <span>{{ category }}</span>
+            <em>{{ articles.filter(item => item.category === category).length }}</em>
+          </button>
+        </el-card>
+
+        <el-card shadow="never" class="side-card server-note">
+          <strong>已导入原博客样例</strong>
+          <p>当前展示 4 篇来自服务器的文章，正文页面使用节选内容和原始配图。</p>
+        </el-card>
+      </aside>
+    </div>
   </div>
 </template>

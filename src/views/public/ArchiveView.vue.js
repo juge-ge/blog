@@ -62,7 +62,7 @@ const __VLS_7 = __VLS_6({
     modelValue: (__VLS_ctx.category),
 }, ...__VLS_functionalComponentArgsRest(__VLS_6));
 const { default: __VLS_10 } = __VLS_8.slots;
-for (const [item] of __VLS_vFor((['全部', '前端开发', '产品思考', '性能优化', '开发日志']))) {
+for (const [item] of __VLS_vFor((['全部', 'AI 实战', '实验记录', '年度总结']))) {
     let __VLS_11;
     /** @ts-ignore @type { | typeof __VLS_components.elOption | typeof __VLS_components.ElOption | typeof __VLS_components['el-option']} */
     elOption;

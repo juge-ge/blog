@@ -34,7 +34,7 @@ function copyLink() {
       <RouterLink to="/archive" class="back-link">文章归档 / {{ article.category }}</RouterLink>
       <h1>{{ article.title }}</h1>
       <p>{{ article.summary }}</p>
-      <div class="article-byline"><span class="mini-avatar">林</span><span><strong>林远</strong><small>{{ article.date }} 发布</small></span><i></i><span><Timer />{{ article.readTime }}</span><span><View />{{ article.views }} 次阅读</span><button @click="copyLink"><CopyDocument />复制链接</button></div>
+      <div class="article-byline"><span class="mini-avatar">刘</span><span><strong>Liu Yang</strong><small>{{ article.date }} 发布</small></span><i></i><span><Timer />{{ article.readTime }}</span><span><View />{{ article.views }} 次阅读</span><button @click="copyLink"><CopyDocument />复制链接</button></div>
     </div>
     <div class="reading-progress"><i></i></div>
     <div class="container article-layout">

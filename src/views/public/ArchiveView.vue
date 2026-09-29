@@ -15,7 +15,7 @@ const filtered = computed(() => articles.filter(article => {
 <template>
   <div class="container page-wrap">
     <div class="page-intro"><span class="section-kicker">ARCHIVE</span><h1>全部文章</h1><p>共 {{ articles.length }} 篇内容，关于技术、产品与持续创造。</p></div>
-    <div class="archive-toolbar"><el-input v-model="keyword" :prefix-icon="Search" placeholder="搜索标题、摘要或标签" clearable /><el-select v-model="category"><el-option v-for="item in ['全部','前端开发','产品思考','性能优化','开发日志']" :key="item" :label="item" :value="item" /></el-select></div>
+    <div class="archive-toolbar"><el-input v-model="keyword" :prefix-icon="Search" placeholder="搜索标题、摘要或标签" clearable /><el-select v-model="category"><el-option v-for="item in ['全部','AI 实战','实验记录','年度总结']" :key="item" :label="item" :value="item" /></el-select></div>
     <div class="archive-list">
       <RouterLink v-for="article in filtered" :key="article.id" :to="`/article/${article.slug}`" class="archive-item">
         <time>{{ article.date.slice(5).replace('-', ' / ') }}</time>

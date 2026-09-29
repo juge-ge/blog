@@ -9,10 +9,10 @@ const stats = [
 ]
 const traffic = [36, 48, 42, 58, 52, 69, 64, 78, 72, 88, 82, 94]
 const recentVisitors = [
-  { ip: '117.***.42.18', area: '上海', device: 'iPhone · Safari', page: '图片优化实践', time: '2 分 18 秒' },
-  { ip: '220.***.18.96', area: '广东', device: 'Windows · Edge', page: 'Vue 状态边界', time: '6 分 42 秒' },
+  { ip: '117.***.42.18', area: '上海', device: 'iPhone · Safari', page: '电解水实验操作细则', time: '2 分 18 秒' },
+  { ip: '220.***.18.96', area: '广东', device: 'Windows · Edge', page: '本地部署私人化大模型', time: '6 分 42 秒' },
   { ip: '39.***.128.7', area: '北京', device: 'Mac · Chrome', page: '博客首页', time: '1 分 09 秒' },
-  { ip: '183.***.76.31', area: '浙江', device: 'Android · WeChat', page: '毕业设计日志', time: '4 分 26 秒' },
+  { ip: '183.***.76.31', area: '浙江', device: 'Android · WeChat', page: '说话人分离并转录实战', time: '4 分 26 秒' },
 ]
 </script>
 

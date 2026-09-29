@@ -5,9 +5,9 @@ import { ElMessage } from 'element-plus'
 
 const tab = ref('待审核')
 const comments = [
-  { name: '小周', ip: '117.***.42.18', article: 'Vue 3 项目中的状态边界', content: '这篇很有帮助，能不能再补充一个大型项目的案例？', time: '今天 13:46' },
-  { name: '匿名读者', ip: '39.***.128.7', article: '博客图片优化实践', content: 'WebP 的兼容性现在怎么样，是否还需要保留原图？', time: '今天 10:12' },
-  { name: '星河', ip: '183.***.76.31', article: '毕业设计开发日志', content: '目录拆分得很清楚，期待后续更新。', time: '昨天 22:38' },
+  { name: '小周', ip: '117.***.42.18', article: '本地部署私人化大模型', content: '这篇很有帮助，能不能再补充一个完整训练流程的案例？', time: '今天 13:46' },
+  { name: '匿名读者', ip: '39.***.128.7', article: '电解水实验操作细则', content: '实验步骤整理得很详细，图片也很直观。', time: '今天 10:12' },
+  { name: '星河', ip: '183.***.76.31', article: '说话人分离并转录实战', content: '部署过程很清楚，期待后续更新。', time: '昨天 22:38' },
 ]
 </script>
 
