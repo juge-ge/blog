@@ -4,8 +4,8 @@ export type Article = {
   slug: string
   summary: string
   category: string
-  tags: string[]
   date: string
+  location: string
   readTime: string
   views: number
   status: '已发布' | '草稿'
@@ -22,13 +22,14 @@ export const articles: Article[] = [
     slug: 'year-2025',
     summary: '用文字和照片记录毕业、跨专业读研、技术学习与生活变化，为这一年画上句号。',
     category: '年度总结',
-    tags: ['年度总结', '碎碎念'],
     date: '2025-12-31',
+    location: '北京',
     readTime: '18 分钟',
     views: 1683,
     status: '已发布',
     featured: true,
     tone: 'teal',
+    cover: '/server-images/year-2025.svg',
     content: `# 2025：信息量极大的一年\n\n**2025 年，是我第一次真切感受到时间以肉眼可见的形式在流逝。**不知为何，一切都过得飞快。转念一想，如今改变世界的 DeepSeek 竟然也是这一年的产物，便觉释然。\n\n我一直认为，单纯的文字记录很难直观地将思绪拉回旧时光，所以决定用图片来定格这一年。这篇博客不仅是给自己的 2025 划上句号，也是想给那些由于多种原因联系越来越少的朋友们看看我的近况。\n\n## 跨入计算机的大门\n\n这一年里，我算是真正跨进了计算机的大门。我记得第一个部署成功的产品是 Whisper，看到它跑通的那一刻，内心的成就感无以复写。\n\n> 三分做，七分改。不要幻想一次性解决所有问题，关键在于坚持。\n\n本文内容来自服务器上原有博客，当前仅展示节选。`,
   },
   {
@@ -37,8 +38,8 @@ export const articles: Article[] = [
     slug: 'electrolysis-guide',
     summary: '从实验前准备、泡沫镍清洗到三电极体系测试，整理电解水实验的完整操作过程。',
     category: '实验记录',
-    tags: ['电解水', '化工实验'],
     date: '2025-07-06',
+    location: '实验室',
     readTime: '22 分钟',
     views: 1256,
     status: '已发布',
@@ -52,8 +53,8 @@ export const articles: Article[] = [
     slug: 'minimind-local-model',
     summary: '以 MiniMind 为例，记录预训练、SFT、LoRA 和知识蒸馏等完整的大模型训练流程。',
     category: 'AI 实战',
-    tags: ['MiniMind', '模型训练'],
     date: '2024-03-18',
+    location: '北京',
     readTime: '16 分钟',
     views: 2318,
     status: '已发布',
@@ -67,8 +68,8 @@ export const articles: Article[] = [
     slug: 'speaker-diarization',
     summary: '基于 FunASR 实现多人对话的说话人分离、语音转写，并使用 FastAPI 部署为可访问服务。',
     category: 'AI 实战',
-    tags: ['语音识别', 'FastAPI'],
     date: '2024-02-27',
+    location: '宿舍',
     readTime: '12 分钟',
     views: 1894,
     status: '已发布',
@@ -82,4 +83,48 @@ export const links = [
   { name: '前端拾光', url: 'https://example.com', desc: '记录前端工程与用户体验', initials: 'FE', color: '#2e7dff' },
   { name: '代码与茶', url: 'https://example.com', desc: '后端、架构与慢生活', initials: 'CT', color: '#18a999' },
   { name: '像素花园', url: 'https://example.com', desc: '产品设计与独立开发', initials: 'PX', color: '#8b5cf6' },
+]
+
+// 个人资料（头像暂为 mock，确定后替换）
+export const profile = {
+  nickname: '北极星',
+  avatar: '/mock-avatar.svg',
+  signature: '记录技术与生活，保持好奇，持续折腾。',
+  location: '现居 北京',
+  stats: {
+    articles: articles.length,
+    photos: 26,
+    messages: 12,
+  },
+}
+
+export type Album = {
+  id: number
+  name: string
+  count: number
+  date: string
+  cover: string
+  fixed?: boolean
+}
+
+export const albums: Album[] = [
+  { id: 1, name: '2025 年度随手拍', count: 12, date: '2025-12-31', cover: '/server-images/year-2025.svg' },
+  { id: 2, name: '实验室日常', count: 6, date: '2025-07-06', cover: '/server-images/electrolysis.jpg' },
+  { id: 3, name: '毕业旅行', count: 5, date: '2024-06-20', cover: '/server-images/speaker.jpg' },
+  { id: 4, name: '桌面与设备', count: 3, date: '2024-03-18', cover: '/server-images/minimind.png' },
+]
+
+export type BoardMessage = {
+  id: number
+  name: string
+  date: string
+  text: string
+  reply?: { text: string; date: string }
+}
+
+export const boardMessages: BoardMessage[] = [
+  { id: 1, name: '前端拾光', date: '2026-09-28', text: '博客改版之后清爽多了，文章质量也一直在线，常来写！', reply: { text: '谢谢支持，常客席位给你留着。', date: '2026-09-29' } },
+  { id: 2, name: '代码与茶', date: '2026-09-15', text: '看了你那篇本地部署大模型的文章，跟着做了一遍，跑通了，感谢分享。', reply: { text: '跑通就好！过程中有报错的话把日志贴出来，我帮你看。', date: '2026-09-16' } },
+  { id: 3, name: '像素花园', date: '2026-08-30', text: '年度总结写得真好，照片也很有生活气息，期待今年的版本。' },
+  { id: 4, name: '路过的朋友', date: '2026-08-12', text: '从搜索引擎找电解水实验找过来的，步骤写得很细，帮大忙了。', reply: { text: '能帮上忙就值了，祝实验顺利。', date: '2026-08-13' } },
 ]

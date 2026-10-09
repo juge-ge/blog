@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 284">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102a43"/>
+      <stop offset="1" stop-color="#1c4966"/>
+    </linearGradient>
+    <linearGradient id="num" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8ce4da"/>
+      <stop offset="1" stop-color="#54d6c7"/>
+    </linearGradient>
+  </defs>
+  <rect width="440" height="284" fill="url(#bg)"/>
+  <circle cx="388" cy="236" r="96" fill="#1bb4a4" opacity=".22"/>
+  <circle cx="60" cy="40" r="70" fill="#ffffff" opacity=".05"/>
+  <path d="M-20 210 Q110 150 220 200 T460 190" stroke="#54d6c7" stroke-width="1.5" fill="none" opacity=".5"/>
+  <path d="M-20 236 Q110 180 220 226 T460 216" stroke="#ffffff" stroke-width="1" fill="none" opacity=".18"/>
+  <text x="36" y="66" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="4" fill="#8ce4da" opacity=".9">ANNUAL REVIEW</text>
+  <text x="32" y="168" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="96" fill="url(#num)">2025</text>
+  <text x="36" y="204" font-family="'Songti SC', 'SimSun', serif" font-size="20" fill="#eaf4f2">信息量极大的一年</text>
+  <g fill="#ffffff" opacity=".85">
+    <circle cx="330" cy="58" r="2.2"/>
+    <circle cx="362" cy="86" r="1.6"/>
+    <circle cx="398" cy="50" r="1.9"/>
+    <circle cx="300" cy="92" r="1.4"/>
+    <circle cx="416" cy="96" r="1.4"/>
+  </g>
+</svg>

@@ -4,3 +4,11 @@ dist/
 *.tsbuildinfo
 .DS_Store
 server-samples/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.log
+.openai/

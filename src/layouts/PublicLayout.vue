@@ -12,16 +12,12 @@ const keyword = ref('')
   <div class="public-shell">
     <header class="site-header">
       <div class="container header-inner">
-        <RouterLink to="/" class="brand" @click="mobileOpen = false">
-          <span class="brand-mark">远</span>
-          <span class="brand-copy"><strong>远光笔记</strong><small>思考 · 技术 · 创造</small></span>
-        </RouterLink>
-
         <nav class="desktop-nav" aria-label="主导航">
           <RouterLink to="/">首页</RouterLink>
           <RouterLink to="/archive">文章</RouterLink>
+          <RouterLink to="/album">相册</RouterLink>
+          <RouterLink to="/board">留言板</RouterLink>
           <RouterLink to="/links">友链</RouterLink>
-          <RouterLink to="/about">关于</RouterLink>
         </nav>
 
         <div class="header-actions">
@@ -29,16 +25,17 @@ const keyword = ref('')
           <button class="icon-button" aria-label="切换主题" @click="app.toggleTheme()">
             <Sunny v-if="app.dark" /><Moon v-else />
           </button>
-          <RouterLink class="admin-link" to="/admin/dashboard">管理台</RouterLink>
+          <RouterLink class="admin-link" to="/admin/login">管理入口</RouterLink>
           <button class="icon-button mobile-menu" aria-label="打开菜单" @click="mobileOpen = !mobileOpen"><Menu /></button>
         </div>
       </div>
 
       <nav v-if="mobileOpen" class="mobile-nav">
         <RouterLink to="/" @click="mobileOpen = false">首页</RouterLink>
-        <RouterLink to="/archive" @click="mobileOpen = false">全部文章</RouterLink>
-        <RouterLink to="/links" @click="mobileOpen = false">友情链接</RouterLink>
-        <RouterLink to="/about" @click="mobileOpen = false">关于我</RouterLink>
+        <RouterLink to="/archive" @click="mobileOpen = false">文章</RouterLink>
+        <RouterLink to="/album" @click="mobileOpen = false">相册</RouterLink>
+        <RouterLink to="/board" @click="mobileOpen = false">留言板</RouterLink>
+        <RouterLink to="/links" @click="mobileOpen = false">友链</RouterLink>
       </nav>
     </header>
 
@@ -46,16 +43,15 @@ const keyword = ref('')
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <div><strong>远光笔记</strong><p>认真记录，清晰表达。</p></div>
-        <div class="footer-links"><RouterLink to="/archive">文章归档</RouterLink><RouterLink to="/links">友情链接</RouterLink><RouterLink to="/about">关于</RouterLink></div>
-        <span>© 2026 远光笔记</span>
+        <div class="footer-links"><RouterLink to="/archive">文章</RouterLink><RouterLink to="/album">相册</RouterLink><RouterLink to="/board">留言板</RouterLink><RouterLink to="/links">友链</RouterLink></div>
+        <span>© 2026</span>
       </div>
     </footer>
 
     <div v-if="app.searchOpen" class="search-overlay" @click.self="app.searchOpen = false">
       <div class="search-panel">
         <div class="search-title"><strong>搜索文章</strong><button class="icon-button" @click="app.searchOpen = false"><Close /></button></div>
-        <el-input v-model="keyword" size="large" placeholder="输入标题、标签或关键词" :prefix-icon="Search" autofocus />
+        <el-input v-model="keyword" size="large" placeholder="输入标题或关键词" :prefix-icon="Search" autofocus />
         <p class="search-hint">试试搜索：Vue、性能优化、毕业设计</p>
         <div v-if="keyword" class="search-result">
           <span class="search-dot"></span>
